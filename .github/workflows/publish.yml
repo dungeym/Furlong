@@ -27,7 +27,7 @@ jobs:
           PACKAGE_NAME: Furlong
           
           # Filepath with version info, relative to root of repository & defaults to PROJECT_FILE_PATH
-          # VERSION_FILE_PATH: Directory.Build.props
+          VERSION_FILE_PATH: VersionInfo.txt
 
           # Regex pattern to extract version info in a capturing group
           # VERSION_REGEX: <Version>(.*)<\/Version>

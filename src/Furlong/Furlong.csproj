@@ -8,13 +8,13 @@
     <Copyright>Mark Dungey (c) 2000-$([System.DateTime]::Now.ToString(yyyy))</Copyright>
     <Description>Library containing several implementations of the Chain of Responsibility pattern supporting sync, async-await, request, request-response and local delegates.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.0.5</Version>
+    <Version>1.1.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>nuget-icon.jpg</PackageIcon>
     <Authors>dungeym</Authors>
     <Company>Mark Dungey</Company>
-    <AssemblyVersion>1.0.5.125</AssemblyVersion>
-    <FileVersion>1.0.5.125</FileVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
