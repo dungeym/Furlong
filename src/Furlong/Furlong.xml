@@ -1,0 +1,582 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Furlong</name>
+    </assembly>
+    <members>
+        <member name="T:Furlong.Asynchronous.AsyncChainFactory`1">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link implements <c>IAsyncChainLink&lt;TRequest&gt;</c>.
+            <para>Supports the async/await pattern.</para>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.AsyncChainFactory`1.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.AsyncChainFactory`2">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link implements <c>IAsyncChainLink&lt;TRequest,TResponse&gt;</c>.
+            <para>Supports the async/await pattern.</para>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.AsyncChainFactory`2.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChainFollowedBy`1.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChainFollowedBy`1.FollowedBy(Furlong.Asynchronous.IAsyncChainLink{`0})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChainFollowedBy`2.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChainFollowedBy`2.FollowedBy(Furlong.Asynchronous.IAsyncChainLink{`0,`1})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.IAsyncChainLink`1">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChainLink`1.SetNext(Furlong.Asynchronous.IAsyncChainLink{`0})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="T:Furlong.Asynchronous.IAsyncChainLink`2">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChainLink`2.SetNext(Furlong.Asynchronous.IAsyncChainLink{`0,`1})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChainStartWith`1.StartWith(Furlong.Asynchronous.IAsyncChainLink{`0})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncChartStartWith`2.StartWith(Furlong.Asynchronous.IAsyncChainLink{`0,`1})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.IAsyncLink`1">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncLink`1.HandleAsync(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.IAsyncLink`2">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.IAsyncLink`2.HandleAsync(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.HandleAsync`1">
+            <summary>
+            Method signature for <c>AsyncLocalChainFactory&lt;TRequest&gt;</c>
+            <para>Supports the async/await pattern.</para>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+            <param name="tokenSource">Call Cancel() on the CancellationTokenSource to exit the chain.</param>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.HandleAsync`2">
+            <summary>
+            Method signature for <c>AsyncLocalChainFactory&lt;TRequest, TResponse&gt;</c>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+            <param name="request">An object that contains the data to be handled.</param>
+            <param name="tokenSource">Call Cancel() on the CancellationTokenSource to exit the chain.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.AsyncLocalChainFactory`1">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link matches the <c>HandleAsync&lt;TRequest&gt;</c> delegate.
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.AsyncLocalChainFactory`1.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.AsyncLocalChainFactory`2">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link matches the <c>HandleAsync&lt;TRequest,TResponse&gt;</c> delegate.
+            <para>Supports the async/await pattern.</para>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.AsyncLocalChainFactory`2.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`1.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`1.FollowedBy(Furlong.Asynchronous.Local.HandleAsync{`0})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`2.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`2.FollowedBy(Furlong.Asynchronous.Local.HandleAsync{`0,`1})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainStartWith`1.StartWith(Furlong.Asynchronous.Local.HandleAsync{`0})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChartStartWith`2.StartWith(Furlong.Asynchronous.Local.HandleAsync{`0,`1})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.IAsyncLocalChain`2">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChain`2.HandleAsync(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.IAsyncLocalLink`1">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Asynchronous.Local.IAsyncLocalLink`1.HandleAsync(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.AsyncLinkBase`1">
+            <summary>
+            Implementation of <c>IAsyncChainLink&lt;TRequest&gt;</c>
+            </summary>
+            <typeparam name="TRequest">An object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.AsyncLinkBase`1.CallNextAsync(`0)">
+            <summary>
+            Call the next link in chain (if one exists).
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.AsyncLinkBase`1.HandleAsync(`0)">
+            <summary>
+            Handle the request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.AsyncLinkBase`1.Furlong#Asynchronous#IAsyncChainLink{TRequest}#SetNext(Furlong.Asynchronous.IAsyncChainLink{`0})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="T:Furlong.AsyncLinkBase`2">
+            <summary>
+            Implementation of <c>IAsyncChainLink&lt;TRequest,TResponse&gt;</c>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.AsyncLinkBase`2.CallNextAsync(`0)">
+            <summary>
+            Call the next link in chain (if one exists).
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.AsyncLinkBase`2.HandleAsync(`0)">
+            <summary>
+            Handle the request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.AsyncLinkBase`2.Furlong#Asynchronous#IAsyncChainLink{TRequest,TResponse}#SetNext(Furlong.Asynchronous.IAsyncChainLink{`0,`1})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="T:Furlong.ChainInspector">
+            <summary>
+            Uses reflection to unfold a Chain (of Responsibility).
+            </summary>
+        </member>
+        <member name="M:Furlong.ChainInspector.UnfoldChain``1(``0)">
+            <summary>
+            Unfold a Chain (of Responsibility) into its individual links.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.LinkBase`1">
+            <summary>
+            Implementation of <c>IChainLink&lt;TRequest&gt;</c>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.LinkBase`1.CallNext(`0)">
+            <summary>
+            Call the next link in chain (if one exists).
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+        </member>
+        <member name="M:Furlong.LinkBase`1.Handle(`0)">
+            <summary>
+            Handle the request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+        </member>
+        <member name="M:Furlong.LinkBase`1.Furlong#Synchronous#IChainLink{TRequest}#SetNext(Furlong.Synchronous.IChainLink{`0})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="T:Furlong.LinkBase`2">
+            <summary>
+            Implementation of <c>IChainLink&lt;TRequest,TResponse&gt;</c>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.LinkBase`2.CallNext(`0)">
+            <summary>
+            Call the next link in chain (if one exists).
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.LinkBase`2.Handle(`0)">
+            <summary>
+            Handle the request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.LinkBase`2.Furlong#Synchronous#IChainLink{TRequest,TResponse}#SetNext(Furlong.Synchronous.IChainLink{`0,`1})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="T:Furlong.Synchronous.ChainFactory`1">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link implements <c>IChainLink&lt;TRequest&gt;</c>.
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.ChainFactory`1.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.ChainFactory`2">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link implements <c>IChainLink&lt;TRequest,TResponse&gt;</c>.
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.ChainFactory`2.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.IChainFollowedBy`1.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.IChainFollowedBy`1.FollowedBy(Furlong.Synchronous.IChainLink{`0})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.IChainFollowedBy`2.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.IChainFollowedBy`2.FollowedBy(Furlong.Synchronous.IChainLink{`0,`1})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.IChainLink`1">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.IChainLink`1.SetNext(Furlong.Synchronous.IChainLink{`0})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="T:Furlong.Synchronous.IChainLink`2">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.IChainLink`2.SetNext(Furlong.Synchronous.IChainLink{`0,`1})">
+            <summary>
+            Set the next link in the chain.
+            </summary>
+            <param name="link"></param>
+        </member>
+        <member name="M:Furlong.Synchronous.IChainStartWith`1.StartWith(Furlong.Synchronous.IChainLink{`0})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.IChartStartWith`2.StartWith(Furlong.Synchronous.IChainLink{`0,`1})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="link"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.ILink`1">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.ILink`1.Handle(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+        </member>
+        <member name="T:Furlong.Synchronous.ILink`2">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.ILink`2.Handle(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalChainFollowedBy`1.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalChainFollowedBy`1.FollowedBy(Furlong.Synchronous.Local.Handle{`0})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalChainFollowedBy`2.Build">
+            <summary>
+            Complete the chain, return the first link.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalChainFollowedBy`2.FollowedBy(Furlong.Synchronous.Local.Handle{`0,`1})">
+            <summary>
+            Set the next link, and subsequent links, in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalChainStartWith`1.StartWith(Furlong.Synchronous.Local.Handle{`0})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalChartStartWith`2.StartWith(Furlong.Synchronous.Local.Handle{`0,`1})">
+            <summary>
+            Set the first link in the chain.
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.ILocalChain`2">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalChain`2.Handle(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.ILocalLink`1">
+            <summary>
+            Represents a link in a Chain (of Responsibility).
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.ILocalLink`1.Handle(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.Handle`1">
+            <summary>
+            Method signature for <c>LocalChainFactory&lt;TRequest&gt;</c>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <param name="request">The request info.</param>
+            <param name="cancel">True to exit the chain.</param>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.Handle`2">
+            <summary>
+            Method signature for <c>LocalChainFactory&lt;TRequest,TResponse&gt;</c>
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+            <param name="request">The request info.</param>
+            <param name="cancel">True to exit the chain.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.LocalChainFactory`1">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link matches the <c>Handle&lt;TRequest&gt;</c> delegate.
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.LocalChainFactory`1.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.LocalChainFactory`2">
+            <summary>
+            Factory to construct a Chain (of Responsibility) where each link matches the <c>Handle&lt;TRequest,TResponse&gt;</c> delegate.
+            </summary>
+            <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
+            <typeparam name="TResponse">The type of the object returned.</typeparam>
+        </member>
+        <member name="M:Furlong.Synchronous.Local.LocalChainFactory`2.Initialize">
+            <summary>
+            Initialize the factory.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

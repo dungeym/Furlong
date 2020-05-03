@@ -11,22 +11,22 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
         private bool _checkpoint1;
         private bool _checkpoint2;
 
-        private void TryHandle1(MyRequest request, out bool cancel)
+        private void Handle1(MyRequest request, out bool cancel)
         {
             cancel = _checkpoint1;
-            request.Visited.Add(nameof(TryHandle1));
+            request.Visited.Add(nameof(Handle1));
         }
 
-        private void TryHandle2(MyRequest request, out bool cancel)
+        private void Handle2(MyRequest request, out bool cancel)
         {
             cancel = _checkpoint2;
-            request.Visited.Add(nameof(TryHandle2));
+            request.Visited.Add(nameof(Handle2));
         }
 
-        private void TryHandle3(MyRequest request, out bool cancel)
+        private void Handle3(MyRequest request, out bool cancel)
         {
             cancel = _checkpoint3;
-            request.Visited.Add(nameof(TryHandle3));
+            request.Visited.Add(nameof(Handle3));
         }
 
         [Fact]
@@ -34,9 +34,9 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
         {
             var chain = LocalChainFactory<MyRequest>
                 .Initialize()
-                .StartWith(TryHandle1)
-                .FollowedBy(TryHandle2)
-                .FollowedBy(TryHandle3)
+                .StartWith(Handle1)
+                .FollowedBy(Handle2)
+                .FollowedBy(Handle3)
                 .Build();
 
             var request = new MyRequest();
@@ -45,7 +45,7 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(3)
-                .And.ContainInOrder(new[] { nameof(TryHandle1), nameof(TryHandle2), nameof(TryHandle3) });
+                .And.ContainInOrder(new[] { nameof(Handle1), nameof(Handle2), nameof(Handle3) });
         }
 
         [Fact]
@@ -55,9 +55,9 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
 
             var chain = LocalChainFactory<MyRequest>
                 .Initialize()
-                .StartWith(TryHandle1)
-                .FollowedBy(TryHandle2)
-                .FollowedBy(TryHandle3)
+                .StartWith(Handle1)
+                .FollowedBy(Handle2)
+                .FollowedBy(Handle3)
                 .Build();
 
             var request = new MyRequest();
@@ -66,7 +66,7 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(1)
-                .And.ContainInOrder(new[] { nameof(TryHandle1) });
+                .And.ContainInOrder(new[] { nameof(Handle1) });
         }
 
         [Fact]
@@ -76,9 +76,9 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
 
             var chain = LocalChainFactory<MyRequest>
                 .Initialize()
-                .StartWith(TryHandle1)
-                .FollowedBy(TryHandle2)
-                .FollowedBy(TryHandle3)
+                .StartWith(Handle1)
+                .FollowedBy(Handle2)
+                .FollowedBy(Handle3)
                 .Build();
 
             var request = new MyRequest();
@@ -87,7 +87,7 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(2)
-                .And.ContainInOrder(new[] { nameof(TryHandle1), nameof(TryHandle2) });
+                .And.ContainInOrder(new[] { nameof(Handle1), nameof(Handle2) });
         }
     }
 }

@@ -13,9 +13,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
         private bool _checkpoint1;
         private bool _checkpoint2;
 
-        private async Task TryHandleAsync1(MyRequest request, CancellationTokenSource source)
+        private async Task HandleAsync1(MyRequest request, CancellationTokenSource source)
         {
-            request.Visited.Add(nameof(TryHandleAsync1));
+            request.Visited.Add(nameof(HandleAsync1));
 
             if (_checkpoint1)
             {
@@ -25,9 +25,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
             await Task.CompletedTask;
         }
 
-        private async Task TryHandleAsync2(MyRequest request, CancellationTokenSource source)
+        private async Task HandleAsync2(MyRequest request, CancellationTokenSource source)
         {
-            request.Visited.Add(nameof(TryHandleAsync2));
+            request.Visited.Add(nameof(HandleAsync2));
 
             if (_checkpoint2)
             {
@@ -37,9 +37,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
             await Task.CompletedTask;
         }
 
-        private async Task TryHandleAsync3(MyRequest request, CancellationTokenSource source)
+        private async Task HandleAsync3(MyRequest request, CancellationTokenSource source)
         {
-            request.Visited.Add(nameof(TryHandleAsync3));
+            request.Visited.Add(nameof(HandleAsync3));
 
             if (_checkpoint3)
             {
@@ -54,9 +54,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
         {
             var chain = AsyncLocalChainFactory<MyRequest>
                 .Initialize()
-                .StartWith(TryHandleAsync1)
-                .FollowedBy(TryHandleAsync2)
-                .FollowedBy(TryHandleAsync3)
+                .StartWith(HandleAsync1)
+                .FollowedBy(HandleAsync2)
+                .FollowedBy(HandleAsync3)
                 .Build();
 
             var request = new MyRequest();
@@ -65,7 +65,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(3)
-                .And.ContainInOrder(new[] { nameof(TryHandleAsync1), nameof(TryHandleAsync2), nameof(TryHandleAsync3) });
+                .And.ContainInOrder(new[] { nameof(HandleAsync1), nameof(HandleAsync2), nameof(HandleAsync3) });
         }
 
         [Fact]
@@ -75,9 +75,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 
             var chain = AsyncLocalChainFactory<MyRequest>
                 .Initialize()
-                .StartWith(TryHandleAsync1)
-                .FollowedBy(TryHandleAsync2)
-                .FollowedBy(TryHandleAsync3)
+                .StartWith(HandleAsync1)
+                .FollowedBy(HandleAsync2)
+                .FollowedBy(HandleAsync3)
                 .Build();
 
             var request = new MyRequest();
@@ -86,7 +86,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(1)
-                .And.ContainInOrder(new[] { nameof(TryHandleAsync1) });
+                .And.ContainInOrder(new[] { nameof(HandleAsync1) });
         }
 
         [Fact]
@@ -96,9 +96,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 
             var chain = AsyncLocalChainFactory<MyRequest>
                 .Initialize()
-                .StartWith(TryHandleAsync1)
-                .FollowedBy(TryHandleAsync2)
-                .FollowedBy(TryHandleAsync3)
+                .StartWith(HandleAsync1)
+                .FollowedBy(HandleAsync2)
+                .FollowedBy(HandleAsync3)
                 .Build();
 
             var request = new MyRequest();
@@ -107,7 +107,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(2)
-                .And.ContainInOrder(new[] { nameof(TryHandleAsync1), nameof(TryHandleAsync2) });
+                .And.ContainInOrder(new[] { nameof(HandleAsync1), nameof(HandleAsync2) });
         }
     }
 }

@@ -13,40 +13,40 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
         private bool _checkpoint1;
         private bool _checkpoint2;
 
-        private async Task<MyResponse> TryHandleAsync1(MyRequest request, CancellationTokenSource source)
+        private async Task<MyResponse> HandleAsync1(MyRequest request, CancellationTokenSource source)
         {
-            request.Visited.Add(nameof(TryHandleAsync1));
+            request.Visited.Add(nameof(HandleAsync1));
 
             if (_checkpoint1)
             {
                 source.Cancel();
-                return await Task.FromResult(new MyResponse(nameof(TryHandleAsync1)));
+                return await Task.FromResult(new MyResponse(nameof(HandleAsync1)));
             }
 
             return default;
         }
 
-        private async Task<MyResponse> TryHandleAsync2(MyRequest request, CancellationTokenSource source)
+        private async Task<MyResponse> HandleAsync2(MyRequest request, CancellationTokenSource source)
         {
-            request.Visited.Add(nameof(TryHandleAsync2));
+            request.Visited.Add(nameof(HandleAsync2));
 
             if (_checkpoint2)
             {
                 source.Cancel();
-                return await Task.FromResult(new MyResponse(nameof(TryHandleAsync2)));
+                return await Task.FromResult(new MyResponse(nameof(HandleAsync2)));
             }
 
             return default;
         }
 
-        private async Task<MyResponse> TryHandleAsync3(MyRequest request, CancellationTokenSource source)
+        private async Task<MyResponse> HandleAsync3(MyRequest request, CancellationTokenSource source)
         {
-            request.Visited.Add(nameof(TryHandleAsync3));
+            request.Visited.Add(nameof(HandleAsync3));
 
             if (_checkpoint3)
             {
                 source.Cancel();
-                return await Task.FromResult(new MyResponse(nameof(TryHandleAsync3)));
+                return await Task.FromResult(new MyResponse(nameof(HandleAsync3)));
             }
 
             return default;
@@ -57,9 +57,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
         {
             var chain = AsyncLocalChainFactory<MyRequest, MyResponse>
                 .Initialize()
-                .StartWith(TryHandleAsync1)
-                .FollowedBy(TryHandleAsync2)
-                .FollowedBy(TryHandleAsync3)
+                .StartWith(HandleAsync1)
+                .FollowedBy(HandleAsync2)
+                .FollowedBy(HandleAsync3)
                 .Build();
 
             var request = new MyRequest();
@@ -68,7 +68,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(3)
-                .And.ContainInOrder(new[] { nameof(TryHandleAsync1), nameof(TryHandleAsync2), nameof(TryHandleAsync3) });
+                .And.ContainInOrder(new[] { nameof(HandleAsync1), nameof(HandleAsync2), nameof(HandleAsync3) });
         }
 
         [Fact]
@@ -78,9 +78,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
 
             var chain = AsyncLocalChainFactory<MyRequest, MyResponse>
                 .Initialize()
-                .StartWith(TryHandleAsync1)
-                .FollowedBy(TryHandleAsync2)
-                .FollowedBy(TryHandleAsync3)
+                .StartWith(HandleAsync1)
+                .FollowedBy(HandleAsync2)
+                .FollowedBy(HandleAsync3)
                 .Build();
 
             var request = new MyRequest();
@@ -89,7 +89,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(1)
-                .And.ContainInOrder(new[] { nameof(TryHandleAsync1) });
+                .And.ContainInOrder(new[] { nameof(HandleAsync1) });
         }
 
         [Fact]
@@ -99,9 +99,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
 
             var chain = AsyncLocalChainFactory<MyRequest, MyResponse>
                 .Initialize()
-                .StartWith(TryHandleAsync1)
-                .FollowedBy(TryHandleAsync2)
-                .FollowedBy(TryHandleAsync3)
+                .StartWith(HandleAsync1)
+                .FollowedBy(HandleAsync2)
+                .FollowedBy(HandleAsync3)
                 .Build();
 
             var request = new MyRequest();
@@ -110,7 +110,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
             request.Visited.Should()
                 .NotBeEmpty()
                 .And.HaveCount(2)
-                .And.ContainInOrder(new[] { nameof(TryHandleAsync1), nameof(TryHandleAsync2) });
+                .And.ContainInOrder(new[] { nameof(HandleAsync1), nameof(HandleAsync2) });
         }
     }
 }
