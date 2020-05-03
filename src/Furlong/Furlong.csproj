@@ -5,9 +5,9 @@
     <RepositoryUrl>https://github.com/dungeym/Furlong</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>design pattern; design patterns; GoF; chain; chain of responsibility;dungeym</PackageTags>
-    <Copyright>Mark Duungey 2020</Copyright>
+    <Copyright>Mark Dungey (c) 2000-$([System.DateTime]::Now.ToString(yyyy))</Copyright>
     <Description>Library containing several implementations of the Chain of Responsbility pattern.</Description>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
 </Project>
