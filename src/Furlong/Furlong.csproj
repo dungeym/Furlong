@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RepositoryUrl>https://github.com/dungeym/Furlong</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>design patterns;GoF;chain;chain of responsibility;dungeym</PackageTags>
+    <PackageTags>design-patterns;GoF;chain;chain-of-responsibility;dungeym</PackageTags>
     <Copyright>Mark Dungey (c) 2000-$([System.DateTime]::Now.ToString(yyyy))</Copyright>
     <Description>Library containing several implementations of the Chain of Responsibility pattern supporting sync, async-await, request, request-response and local delegates.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
