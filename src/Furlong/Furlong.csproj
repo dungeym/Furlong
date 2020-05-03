@@ -10,4 +10,8 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Private\Development\Furlong\src\Furlong\Furlong.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
