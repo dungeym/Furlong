@@ -45,7 +45,7 @@ jobs:
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
           # API key to authenticate with NuGet symbols server, defaults to NUGET_KEY
-          NUGET_SYMBOL_KEY: ${{secrets.NUGET_SYMBOLS_API_KEY}}
+          # NUGET_SYMBOL_KEY: ${{secrets.NUGET_SYMBOLS_API_KEY}}
 
           # NuGet server uri hosting the packages, defaults to https://api.nuget.org
           # NUGET_SOURCE: https://api.nuget.org
