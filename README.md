@@ -1,8 +1,8 @@
 # Furlong
 Library containing several implementations of the Chain of Responsibility pattern supporting sync, async-await, request, request-response and local delegates.
 
-![.NET Core](https://github.com/dungeym/Furlong/workflows/.NET%20Core/badge.svg)
-![publish to nuget](https://github.com/dungeym/Furlong/workflows/publish%20to%20nuget/badge.svg)
+![Build and Test](https://github.com/dungeym/Furlong/workflows/Build%20and%20Test/badge.svg)
+![Publish to Nuget](https://github.com/dungeym/Furlong/workflows/Publish%20to%20Nuget/badge.svg)
 
 ## Introduction
 This library contains several implementations of the *Chain of Responsibility*, one of the key Behavioural Patterns from the [Gang of Four](http://wiki.c2.com/?GangOfFour).  Each of the implementations have the following characteristics.
