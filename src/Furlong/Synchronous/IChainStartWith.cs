@@ -1,5 +1,9 @@
 ﻿namespace Furlong.Synchronous
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
     public interface IChainStartWith<TRequest>
     {
         /// <summary>
@@ -10,6 +14,11 @@
         IChainFollowedBy<TRequest> StartWith(IChainLink<TRequest> link);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TResponse"></typeparam>
     public interface IChartStartWith<TRequest, TResponse>
     {
         /// <summary>

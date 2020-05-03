@@ -1,5 +1,9 @@
 ﻿namespace Furlong.Asynchronous
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
     public interface IAsyncChainFollowedBy<TRequest>
     {
         /// <summary>
@@ -16,6 +20,11 @@
         IAsyncChainFollowedBy<TRequest> FollowedBy(IAsyncChainLink<TRequest> link);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TResponse"></typeparam>
     public interface IAsyncChainFollowedBy<TRequest, TResponse>
     {
         /// <summary>

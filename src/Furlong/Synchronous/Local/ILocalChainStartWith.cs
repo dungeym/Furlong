@@ -1,5 +1,9 @@
 ﻿namespace Furlong.Synchronous.Local
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
     public interface ILocalChainStartWith<TRequest>
     {
         /// <summary>
@@ -10,6 +14,11 @@
         ILocalChainFollowedBy<TRequest> StartWith(Handle<TRequest> handler);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TResponse"></typeparam>
     public interface ILocalChartStartWith<TRequest, TResponse>
     {
         /// <summary>

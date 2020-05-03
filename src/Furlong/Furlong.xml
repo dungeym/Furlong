@@ -31,6 +31,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Furlong.Asynchronous.IAsyncChainFollowedBy`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Asynchronous.IAsyncChainFollowedBy`1.Build">
             <summary>
             Complete the chain, return the first link.
@@ -43,6 +49,13 @@
             </summary>
             <param name="link"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.IAsyncChainFollowedBy`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Asynchronous.IAsyncChainFollowedBy`2.Build">
             <summary>
@@ -82,12 +95,25 @@
             </summary>
             <param name="link"></param>
         </member>
+        <member name="T:Furlong.Asynchronous.IAsyncChainStartWith`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Asynchronous.IAsyncChainStartWith`1.StartWith(Furlong.Asynchronous.IAsyncChainLink{`0})">
             <summary>
             Set the first link in the chain.
             </summary>
             <param name="link"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.IAsyncChartStartWith`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Asynchronous.IAsyncChartStartWith`2.StartWith(Furlong.Asynchronous.IAsyncChainLink{`0,`1})">
             <summary>
@@ -169,6 +195,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`1.Build">
             <summary>
             Complete the chain, return the first link.
@@ -181,6 +213,13 @@
             </summary>
             <param name="handler"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainFollowedBy`2.Build">
             <summary>
@@ -195,12 +234,25 @@
             <param name="handler"></param>
             <returns></returns>
         </member>
+        <member name="T:Furlong.Asynchronous.Local.IAsyncLocalChainStartWith`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChainStartWith`1.StartWith(Furlong.Asynchronous.Local.HandleAsync{`0})">
             <summary>
             Set the first link in the chain.
             </summary>
             <param name="handler"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Asynchronous.Local.IAsyncLocalChartStartWith`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Asynchronous.Local.IAsyncLocalChartStartWith`2.StartWith(Furlong.Asynchronous.Local.HandleAsync{`0,`1})">
             <summary>
@@ -378,6 +430,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Furlong.Synchronous.IChainFollowedBy`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Synchronous.IChainFollowedBy`1.Build">
             <summary>
             Complete the chain, return the first link.
@@ -390,6 +448,13 @@
             </summary>
             <param name="link"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.IChainFollowedBy`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Synchronous.IChainFollowedBy`2.Build">
             <summary>
@@ -429,12 +494,25 @@
             </summary>
             <param name="link"></param>
         </member>
+        <member name="T:Furlong.Synchronous.IChainStartWith`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Synchronous.IChainStartWith`1.StartWith(Furlong.Synchronous.IChainLink{`0})">
             <summary>
             Set the first link in the chain.
             </summary>
             <param name="link"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.IChartStartWith`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Synchronous.IChartStartWith`2.StartWith(Furlong.Synchronous.IChainLink{`0,`1})">
             <summary>
@@ -469,6 +547,12 @@
             <param name="request">An object that contains the data to be handled.</param>
             <returns></returns>
         </member>
+        <member name="T:Furlong.Synchronous.Local.ILocalChainFollowedBy`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Synchronous.Local.ILocalChainFollowedBy`1.Build">
             <summary>
             Complete the chain, return the first link.
@@ -481,6 +565,13 @@
             </summary>
             <param name="handler"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.ILocalChainFollowedBy`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Synchronous.Local.ILocalChainFollowedBy`2.Build">
             <summary>
@@ -495,12 +586,25 @@
             <param name="handler"></param>
             <returns></returns>
         </member>
+        <member name="T:Furlong.Synchronous.Local.ILocalChainStartWith`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+        </member>
         <member name="M:Furlong.Synchronous.Local.ILocalChainStartWith`1.StartWith(Furlong.Synchronous.Local.Handle{`0})">
             <summary>
             Set the first link in the chain.
             </summary>
             <param name="handler"></param>
             <returns></returns>
+        </member>
+        <member name="T:Furlong.Synchronous.Local.ILocalChartStartWith`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.Synchronous.Local.ILocalChartStartWith`2.StartWith(Furlong.Synchronous.Local.Handle{`0,`1})">
             <summary>

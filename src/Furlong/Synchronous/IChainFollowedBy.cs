@@ -1,5 +1,9 @@
 ﻿namespace Furlong.Synchronous
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
     public interface IChainFollowedBy<TRequest>
     {
         /// <summary>
@@ -16,6 +20,11 @@
         IChainFollowedBy<TRequest> FollowedBy(IChainLink<TRequest> link);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TResponse"></typeparam>
     public interface IChainFollowedBy<TRequest, TResponse>
     {
         /// <summary>

@@ -1,5 +1,9 @@
 ﻿namespace Furlong.Asynchronous
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
     public interface IAsyncChainStartWith<TRequest>
     {
         /// <summary>
@@ -10,6 +14,11 @@
         IAsyncChainFollowedBy<TRequest> StartWith(IAsyncChainLink<TRequest> link);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TResponse"></typeparam>
     public interface IAsyncChartStartWith<TRequest, TResponse>
     {
         /// <summary>
