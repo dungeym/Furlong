@@ -5,14 +5,14 @@ Library containing several implementations of the Chain of Responsibility patter
 ![Publish to Nuget](https://github.com/dungeym/Furlong/workflows/Publish%20to%20Nuget/badge.svg)
 
 ## Introduction
-This library contains several implementations of the *Chain of Responsibility*, one of the key Behavioural Patterns from the [Gang of Four](http://wiki.c2.com/?GangOfFour).  Each of the implementations have the following characteristics.
+This library contains several implementations of the *Chain of Responsibility*, one of the Behavioural Patterns from the [Gang of Four](http://wiki.c2.com/?GangOfFour).  Each of the implementations has the following characteristics.
 
 - A **chain** represents two or more **links**.
 - A **chain** can only be accessed by the first **link**.
 - Each **link** determines if it should pass the **request** to the next **link** in the **chain**.
 
 ### Installation
-To install the library from [NuGet](https://www.nuget.org/packages/Furlong/ "Furlong on NuGet.org") using the .NET SDK run:
+Install the library from <a target="_blank" href="https://www.nuget.org/packages/Furlong/" title="Furlong on NuGet">NuGet</a> using:
 ```
 dotnet add package Furlong
 ```
