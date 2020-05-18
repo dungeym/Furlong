@@ -1,4 +1,4 @@
-﻿namespace Furlong.Synchronous
+﻿namespace Furlong
 {
     /// <summary>
     /// 

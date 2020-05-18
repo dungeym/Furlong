@@ -1,4 +1,4 @@
-﻿namespace Furlong.Asynchronous
+﻿namespace Furlong
 {
     /// <summary>
     /// Factory to construct a Chain (of Responsibility) where each link implements <c>IAsyncChainLink&lt;TRequest&gt;</c>.

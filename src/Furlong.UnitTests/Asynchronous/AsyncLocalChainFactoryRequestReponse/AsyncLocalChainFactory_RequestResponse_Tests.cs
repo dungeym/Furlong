@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Furlong.Asynchronous.Local;
 using Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse.Domain;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +8,6 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
 {
     public class AsyncLocalChainFactory_RequestResponse_Tests
     {
-        private readonly bool _checkpoint3 = false;
         private bool _checkpoint1;
         private bool _checkpoint2;
 
@@ -20,7 +18,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
             if (_checkpoint1)
             {
                 source.Cancel();
-                return await Task.FromResult(new MyResponse(nameof(HandleAsync1)));
+                return await Task.FromResult(new MyResponse(nameof(HandleAsync1))).ConfigureAwait(false);
             }
 
             return default;
@@ -33,7 +31,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
             if (_checkpoint2)
             {
                 source.Cancel();
-                return await Task.FromResult(new MyResponse(nameof(HandleAsync2)));
+                return await Task.FromResult(new MyResponse(nameof(HandleAsync2))).ConfigureAwait(false);
             }
 
             return default;
@@ -43,13 +41,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequestReponse
         {
             request.Visited.Add(nameof(HandleAsync3));
 
-            if (_checkpoint3)
-            {
-                source.Cancel();
-                return await Task.FromResult(new MyResponse(nameof(HandleAsync3)));
-            }
-
-            return default;
+            return await Task.FromResult(new MyResponse(nameof(HandleAsync3))).ConfigureAwait(false);
         }
 
         [Fact]

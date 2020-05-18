@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Furlong.Asynchronous.Local
+namespace Furlong
 {
     /// <summary>
     /// Method signature for <c>AsyncLocalChainFactory&lt;TRequest&gt;</c>
@@ -65,7 +65,7 @@ namespace Furlong.Asynchronous.Local
                 {
                     while (en.MoveNext())
                     {
-                        await en.Current(request, source);
+                        await en.Current(request, source).ConfigureAwait(false);
                         if (source.IsCancellationRequested)
                         {
                             break;
@@ -125,7 +125,7 @@ namespace Furlong.Asynchronous.Local
                 {
                     while (en.MoveNext())
                     {
-                        var response = await en.Current(request, source);
+                        var response = await en.Current(request, source).ConfigureAwait(false);
                         if (source.IsCancellationRequested)
                         {
                             return response;

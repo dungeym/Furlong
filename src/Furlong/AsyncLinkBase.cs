@@ -1,5 +1,4 @@
-﻿using Furlong.Asynchronous;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Furlong
 {

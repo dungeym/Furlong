@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Furlong.Synchronous.Local;
 using Furlong.UnitTests.Synchronous.LocalChainFactoryRequest.Domain;
 using Xunit;
 
@@ -7,7 +6,6 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
 {
     public class LocalChainFactory_Request_Tests
     {
-        private readonly bool _checkpoint3 = false;
         private bool _checkpoint1;
         private bool _checkpoint2;
 
@@ -25,7 +23,7 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
 
         private void Handle3(MyRequest request, out bool cancel)
         {
-            cancel = _checkpoint3;
+            cancel = false;
             request.Visited.Add(nameof(Handle3));
         }
 

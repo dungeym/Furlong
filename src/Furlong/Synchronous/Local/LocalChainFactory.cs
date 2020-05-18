@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Furlong.Synchronous.Local
+namespace Furlong
 {
     /// <summary>
     /// Method signature for <c>LocalChainFactory&lt;TRequest&gt;</c>

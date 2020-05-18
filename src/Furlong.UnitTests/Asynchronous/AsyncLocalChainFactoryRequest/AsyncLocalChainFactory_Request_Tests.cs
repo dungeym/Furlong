@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Furlong.Asynchronous.Local;
 using Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest.Domain;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +8,6 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 {
     public class AsyncLocalChainFactory_Request_Tests
     {
-        private readonly bool _checkpoint3 = false;
         private bool _checkpoint1;
         private bool _checkpoint2;
 
@@ -40,11 +38,6 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
         private async Task HandleAsync3(MyRequest request, CancellationTokenSource source)
         {
             request.Visited.Add(nameof(HandleAsync3));
-
-            if (_checkpoint3)
-            {
-                source.Cancel();
-            }
 
             await Task.CompletedTask;
         }

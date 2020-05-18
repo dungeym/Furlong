@@ -1,5 +1,4 @@
-﻿using Furlong.Synchronous;
-
+﻿
 namespace Furlong
 {
     /// <summary>

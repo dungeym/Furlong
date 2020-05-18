@@ -1,4 +1,4 @@
-﻿namespace Furlong.Synchronous.Local
+﻿namespace Furlong
 {
     /// <summary>
     /// Represents a link in a Chain (of Responsibility).

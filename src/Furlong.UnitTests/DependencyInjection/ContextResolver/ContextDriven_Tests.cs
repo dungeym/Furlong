@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Furlong.Synchronous;
 using Furlong.UnitTests.DependencyInjection.ContextResolver.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using System;

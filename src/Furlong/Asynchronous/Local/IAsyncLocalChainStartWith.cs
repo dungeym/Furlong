@@ -1,4 +1,4 @@
-﻿namespace Furlong.Asynchronous.Local
+﻿namespace Furlong
 {
     /// <summary>
     /// 

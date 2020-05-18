@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Furlong.Asynchronous
+namespace Furlong
 {
     /// <summary>
     /// Represents a link in a Chain (of Responsibility).

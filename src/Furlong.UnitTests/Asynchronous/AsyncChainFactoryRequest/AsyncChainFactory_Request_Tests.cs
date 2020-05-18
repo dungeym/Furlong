@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Furlong.Asynchronous;
 using Furlong.UnitTests.Asynchronous.AsyncChainFactoryRequest.Domain;
 using System.Threading.Tasks;
 using Xunit;

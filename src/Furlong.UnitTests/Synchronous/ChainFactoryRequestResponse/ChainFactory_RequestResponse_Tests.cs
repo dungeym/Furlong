@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Furlong.Synchronous;
 using Furlong.UnitTests.Synchronous.ChainFactoryRequestResponse.Domain;
 using Xunit;
 
