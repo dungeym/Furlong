@@ -2,6 +2,7 @@
 Library containing several implementations of the Chain of Responsibility pattern supporting sync, async-await, request, request-response and local delegates.
 
 ![build](https://github.com/dungeym/Furlong/workflows/build/badge.svg)</br>
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/574c103c455f42f58bc2a4a7ec98de1f)](https://app.codacy.com/manual/dungeym/Furlong?utm_source=github.com&utm_medium=referral&utm_content=dungeym/Furlong&utm_campaign=Badge_Grade_Settings)
 [![codecov](https://codecov.io/gh/dungeym/Furlong/branch/master/graph/badge.svg)](https://codecov.io/gh/dungeym/Furlong)</br>
 ![codacy](https://app.codacy.com/project/badge/Grade/9cf7e0c25cc441a3a386f9adb0d46403)](https://www.codacy.com/manual/dungeym/Furlong?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungeym/Furlong&amp;utm_campaign=Badge_Grade)</br>
 ![nuget](https://github.com/dungeym/Furlong/workflows/Publish%20to%20Nuget/badge.svg)
