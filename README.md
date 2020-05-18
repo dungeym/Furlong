@@ -7,8 +7,9 @@ Library containing several implementations of the Chain of Responsibility patter
 [![NuGet Badge](https://buildstats.info/nuget/Furlong)](https://www.nuget.org/packages/Furlong/)
 
 ## Introduction
-This library contains several implementations of the *Chain of Responsibility*, one of the Behavioural Patterns from the [Gang of Four](http://wiki.c2.com/?GangOfFour).  Each of the implementations has the following characteristics.
+This library contains several implementations of the *Chain of Responsibility*, one of the Behavioural Patterns from the [Gang of Four](http://wiki.c2.com/?GangOfFour).  
 
+Each of the implementations has the following characteristics.
 -  A **chain** represents two or more **links**.
 -  A **chain** can only be accessed by the first **link**.
 -  Each **link** determines if it should pass the **request** to the next **link** in the **chain**.
@@ -22,8 +23,6 @@ dotnet add package Furlong
 ### Basic Examples
 Simple chain with no response.
 ```csharp
-// using Furlong.Synchronous;
-
 var link = ChainFactory<MyRequest>
 	  .Initialize()
 	  .StartWith(new MyLink1())
@@ -38,8 +37,6 @@ link.Handle(request);
 
 Asynchronous chain returning a response.
 ```csharp
-// using Furlong.Asynchronous;
-
 var link = ChainFactory<MyRequest>
 	  .Initialize()
 	  .StartWith(new MyLink1())
@@ -52,8 +49,45 @@ var request = new MyRequest();
 var response = await link.HandleAsync(request);
 ```
 
+Synchronous chain using local delegates.
+```csharp
+{
+	var link = LocalChainFactory<MyRequest>
+					.Initialize()
+					.StartWith(Handle1)
+					.FollowedBy(Handle2)
+					.FollowedBy(Handle3)
+					.Build();
+
+	var request = new MyRequest();
+
+	link.Handle(request);
+}
+
+private state void Handle1(MyRequest request, out bool cancel)
+{
+	cancel = false;
+	
+	// Do something..
+}
+
+private state void Handle2(MyRequest request, out bool cancel)
+{
+	cancel = false;
+	
+	// Do something..
+}
+
+private state void Handle3(MyRequest request, out bool cancel)
+{
+	cancel = false;
+	
+	// Do something..
+}
+```
+
 Further examples can be found in the Unit Tests project, these include:
 1. [Simple Dependency Injection](https://github.com/dungeym/Furlong/blob/master/src/Furlong.UnitTests/DependencyInjection/FurlongInterface/FurlongInterface_Tests.cs)
 1. [Dependency Injection using a Context Resolver](https://github.com/dungeym/Furlong/blob/master/src/Furlong.UnitTests/DependencyInjection/ContextResolver/ContextDriven_Tests.cs)
 1. [Using a custom interface as the request definition](https://github.com/dungeym/Furlong/blob/master/src/Furlong.UnitTests/DependencyInjection/CustomInterface/CustomInterface_Tests.cs)
-1. [Inline links (delegates)](https://github.com/dungeym/Furlong/blob/master/src/Furlong.UnitTests/Synchronous/LocalChainFactoryRequestResponse/LocalChainFactory_RequestResponse_Tests.cs)
+
