@@ -3,7 +3,7 @@ Library containing several implementations of the Chain of Responsibility patter
 
 ![build](https://github.com/dungeym/Furlong/workflows/build/badge.svg)</br>
 [![codecov](https://codecov.io/gh/dungeym/Furlong/branch/master/graph/badge.svg)](https://codecov.io/gh/dungeym/Furlong)</br>
-![codacy](https://app.codacy.com/project/badge/Grade/9cf7e0c25cc441a3a386f9adb0d46403)](https://www.codacy.com/manual/dungeym/Furlong?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungeym/Furlong&amp;utm_campaign=Badge_Grade)</br>
+[![codacy](https://app.codacy.com/project/badge/Grade/9cf7e0c25cc441a3a386f9adb0d46403)](https://www.codacy.com/manual/dungeym/Furlong?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungeym/Furlong&amp;utm_campaign=Badge_Grade))</br>
 ![nuget](https://github.com/dungeym/Furlong/workflows/Publish%20to%20Nuget/badge.svg)
 
 ## Introduction
