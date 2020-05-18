@@ -1,4 +1,4 @@
-name: build
+name: nuget
 
 on:
   push:
@@ -32,7 +32,11 @@ jobs:
         
     - name: Install Dependencies
       run: dotnet restore
-      
+      env:
+        DOTNET_CLI_TELEMETRY_OPTOUT: true
+        DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+        NUGET_XMLDOC_MODE: skip
+    
     - name: Build
       run: dotnet build --configuration Release --no-restore
       
