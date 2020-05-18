@@ -38,10 +38,13 @@ jobs:
         NUGET_XMLDOC_MODE: skip
     
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore --output ./artifacts
       
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    
+    - name: Pack
+      run: dotnet pack --output ./artifacts/packages --configuration Release --include-symbols --include-source
 
     - name: Publish artifacts
       uses: actions/upload-artifact@v2
@@ -49,8 +52,8 @@ jobs:
         name: artifacts-${{ matrix.os_name }}
         path: ./artifacts
 
-    - name: Publish NuGet packages
-      uses: actions/upload-artifact@v1
+    - name: Publish packages
+      uses: actions/upload-artifact@v2
       with:
         name: packages-${{ matrix.os_name }}
         path: ./artifacts/packages
