@@ -4,7 +4,7 @@ Library containing several implementations of the Chain of Responsibility patter
 ![build](https://github.com/dungeym/Furlong/workflows/build/badge.svg)</br>
 [![code coverage](https://codecov.io/gh/dungeym/Furlong/branch/master/graph/badge.svg)](https://codecov.io/gh/dungeym/Furlong)</br>
 [![codacy](https://app.codacy.com/project/badge/Grade/9cf7e0c25cc441a3a386f9adb0d46403)](https://www.codacy.com/manual/dungeym/Furlong?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungeym/Furlong&amp;utm_campaign=Badge_Grade)</br>
-![nuget](https://github.com/dungeym/Furlong/workflows/Publish%20to%20Nuget/badge.svg)
+[![nuget](https://buildstats.info/nuget/dungeym.Furlong?includePreReleases=true)](http://www.nuget.org/packages/Furlong "Download Furlong from NuGet")
 
 ## Introduction
 This library contains several implementations of the *Chain of Responsibility*, one of the Behavioural Patterns from the [Gang of Four](http://wiki.c2.com/?GangOfFour).  Each of the implementations has the following characteristics.
