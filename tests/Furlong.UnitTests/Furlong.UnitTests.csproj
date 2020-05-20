@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Furlong\Furlong.csproj" />
+    <ProjectReference Include="..\..\src\Furlong\Furlong.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Furlong", "src\Furlong\Furlong.csproj", "{457A6880-6306-4149-9F00-27E354D0389B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furlong.UnitTests", "src\Furlong.UnitTests\Furlong.UnitTests.csproj", "{7C0D8379-8351-4A74-900E-C218C2E94596}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furlong.UnitTests", "tests\Furlong.UnitTests\Furlong.UnitTests.csproj", "{7C0D8379-8351-4A74-900E-C218C2E94596}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

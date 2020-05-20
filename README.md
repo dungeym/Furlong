@@ -23,7 +23,7 @@ dotnet add package Furlong
 ### Basic Examples
 Simple chain with no response.
 ```csharp
-var link = ChainFactory<MyRequest>
+var chain = ChainFactory<MyRequest>
 	  .Initialize()
 	  .StartWith(new MyLink1())
 	  .FollowedBy(new MyLink2())
@@ -32,12 +32,12 @@ var link = ChainFactory<MyRequest>
 
 var request = new MyRequest();
 
-link.Handle(request);
+chain.Handle(request);
 ```
 
 Asynchronous chain returning a response.
 ```csharp
-var link = ChainFactory<MyRequest>
+var chain = ChainFactory<MyRequest>
 	  .Initialize()
 	  .StartWith(new MyLink1())
 	  .FollowedBy(new MyLink2())
@@ -46,13 +46,13 @@ var link = ChainFactory<MyRequest>
 
 var request = new MyRequest();
 
-var response = await link.HandleAsync(request);
+var response = await chain.HandleAsync(request);
 ```
 
 Synchronous chain using local delegates.
 ```csharp
 {
-	var link = LocalChainFactory<MyRequest>
+	var chain = LocalChainFactory<MyRequest>
 					.Initialize()
 					.StartWith(Handle1)
 					.FollowedBy(Handle2)
@@ -61,7 +61,7 @@ Synchronous chain using local delegates.
 
 	var request = new MyRequest();
 
-	link.Handle(request);
+	chain.Handle(request);
 }
 
 private state void Handle1(MyRequest request, out bool cancel)

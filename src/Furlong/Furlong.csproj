@@ -31,14 +31,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Link="Resources\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\nuget-icon.jpg" Link="Resources\nuget-icon.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <Content Include="..\..\nuget-icon.jpg" Link="Resources\nuget-icon.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Link="Resources\LICENSE" />
   </ItemGroup>
 
 </Project>
