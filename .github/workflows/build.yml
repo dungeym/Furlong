@@ -44,7 +44,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       
     - name: Pack
-      run: dotnet pack --output ./artifacts/packages --configuration Release --include-symbols --include-source --verbosity detailed -version "1.0.0-x"
+      run: dotnet pack --output ./artifacts/packages --configuration Release --include-symbols --include-source
 
     - name: Publish artifacts
       uses: actions/upload-artifact@v2
