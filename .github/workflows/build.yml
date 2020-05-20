@@ -46,18 +46,18 @@ jobs:
     - name: Pack
       run: dotnet pack --output ./artifacts/packages --configuration Release --include-symbols --include-source
 
-    - name: Publish artifacts
+    - name: Publish Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: artifacts-${{ matrix.os_name }}
         path: ./artifacts
 
-    - name: Publish packages
+    - name: Publish Packages
       uses: actions/upload-artifact@v2
       with:
         name: packages-${{ matrix.os_name }}
         path: ./artifacts/packages
 
-    - name: Push NuGet packages to NuGet.org
-      run: dotnet nuget push ./artifacts/packages/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --skip-duplicate
+    - name: Push Packages to NuGet.org
+      run: dotnet nuget push "artifacts\packages\*.nupkg" --api-key ${{ secrets.NUGET_TOKEN }} --skip-duplicate
       if: ${{ startsWith(github.ref, 'refs/tags/v') && runner.os == 'windows' }}
