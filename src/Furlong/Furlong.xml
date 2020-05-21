@@ -32,10 +32,10 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncChainFollowedBy`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncChainFollowedBy`1.Build">
             <summary>
@@ -51,11 +51,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncChainFollowedBy`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncChainFollowedBy`2.Build">
             <summary>
@@ -96,10 +96,10 @@
             <param name="link"></param>
         </member>
         <member name="T:Furlong.IAsyncChainStartWith`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncChainStartWith`1.StartWith(Furlong.IAsyncChainLink{`0})">
             <summary>
@@ -109,11 +109,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncChartStartWith`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncChartStartWith`2.StartWith(Furlong.IAsyncChainLink{`0,`1})">
             <summary>
@@ -128,11 +128,12 @@
             </summary>
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
         </member>
-        <member name="M:Furlong.IAsyncLink`1.HandleAsync(`0)">
+        <member name="M:Furlong.IAsyncLink`1.HandleAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Handle a request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncLink`2">
@@ -142,11 +143,12 @@
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <typeparam name="TResponse">The type of the object returned.</typeparam>
         </member>
-        <member name="M:Furlong.IAsyncLink`2.HandleAsync(`0)">
+        <member name="M:Furlong.IAsyncLink`2.HandleAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Handle a request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
         <member name="T:Furlong.HandleAsync`1">
@@ -156,8 +158,8 @@
             </summary>
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
-            <param name="tokenSource">Call Cancel() on the CancellationTokenSource to exit the chain.</param>
         </member>
         <member name="T:Furlong.HandleAsync`2">
             <summary>
@@ -166,7 +168,7 @@
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <typeparam name="TResponse">The type of the object returned.</typeparam>
             <param name="request">An object that contains the data to be handled.</param>
-            <param name="tokenSource">Call Cancel() on the CancellationTokenSource to exit the chain.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
         <member name="T:Furlong.AsyncLocalChainFactory`1">
@@ -196,10 +198,10 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncLocalChainFollowedBy`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncLocalChainFollowedBy`1.Build">
             <summary>
@@ -215,11 +217,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncLocalChainFollowedBy`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncLocalChainFollowedBy`2.Build">
             <summary>
@@ -235,10 +237,10 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncLocalChainStartWith`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncLocalChainStartWith`1.StartWith(Furlong.HandleAsync{`0})">
             <summary>
@@ -248,11 +250,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncLocalChartStartWith`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.IAsyncLocalChartStartWith`2.StartWith(Furlong.HandleAsync{`0,`1})">
             <summary>
@@ -268,11 +270,12 @@
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <typeparam name="TResponse">The type of the object returned.</typeparam>
         </member>
-        <member name="M:Furlong.IAsyncLocalChain`2.HandleAsync(`0)">
+        <member name="M:Furlong.IAsyncLocalChain`2.HandleAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Handle a request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncLocalLink`1">
@@ -281,12 +284,12 @@
             </summary>
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
         </member>
-        <member name="M:Furlong.IAsyncLocalLink`1.HandleAsync(`0)">
+        <member name="M:Furlong.IAsyncLocalLink`1.HandleAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Handle a request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
-            <returns></returns>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         </member>
         <member name="T:Furlong.AsyncLinkBase`1">
             <summary>
@@ -294,18 +297,20 @@
             </summary>
             <typeparam name="TRequest">An object that contains the data to be handled.</typeparam>
         </member>
-        <member name="M:Furlong.AsyncLinkBase`1.CallNextAsync(`0)">
+        <member name="M:Furlong.AsyncLinkBase`1.CallNextAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Call the next link in chain (if one exists).
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
-        <member name="M:Furlong.AsyncLinkBase`1.HandleAsync(`0)">
+        <member name="M:Furlong.AsyncLinkBase`1.HandleAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Handle the request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
         <member name="M:Furlong.AsyncLinkBase`1.Furlong#IAsyncChainLink{TRequest}#SetNext(Furlong.IAsyncChainLink{`0})">
@@ -321,18 +326,20 @@
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <typeparam name="TResponse">The type of the object returned.</typeparam>
         </member>
-        <member name="M:Furlong.AsyncLinkBase`2.CallNextAsync(`0)">
+        <member name="M:Furlong.AsyncLinkBase`2.CallNextAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Call the next link in chain (if one exists).
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
-        <member name="M:Furlong.AsyncLinkBase`2.HandleAsync(`0)">
+        <member name="M:Furlong.AsyncLinkBase`2.HandleAsync(`0,System.Threading.CancellationToken)">
             <summary>
             Handle the request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
+            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
         <member name="M:Furlong.AsyncLinkBase`2.Furlong#IAsyncChainLink{TRequest,TResponse}#SetNext(Furlong.IAsyncChainLink{`0,`1})">
@@ -431,10 +438,10 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IChainFollowedBy`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.IChainFollowedBy`1.Build">
             <summary>
@@ -450,11 +457,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IChainFollowedBy`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.IChainFollowedBy`2.Build">
             <summary>
@@ -495,10 +502,10 @@
             <param name="link"></param>
         </member>
         <member name="T:Furlong.IChainStartWith`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.IChainStartWith`1.StartWith(Furlong.IChainLink{`0})">
             <summary>
@@ -508,11 +515,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.IChartStartWith`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.IChartStartWith`2.StartWith(Furlong.IChainLink{`0,`1})">
             <summary>
@@ -548,10 +555,10 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.ILocalChainFollowedBy`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.ILocalChainFollowedBy`1.Build">
             <summary>
@@ -567,11 +574,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.ILocalChainFollowedBy`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.ILocalChainFollowedBy`2.Build">
             <summary>
@@ -587,10 +594,10 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.ILocalChainStartWith`1">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
         </member>
         <member name="M:Furlong.ILocalChainStartWith`1.StartWith(Furlong.Handle{`0})">
             <summary>
@@ -600,11 +607,11 @@
             <returns></returns>
         </member>
         <member name="T:Furlong.ILocalChartStartWith`2">
-            <summary>
+             <summary>
             
-            </summary>
-            <typeparam name="TRequest"></typeparam>
-            <typeparam name="TResponse"></typeparam>
+             </summary>
+             <typeparam name="TRequest"></typeparam>
+             <typeparam name="TResponse"></typeparam>
         </member>
         <member name="M:Furlong.ILocalChartStartWith`2.StartWith(Furlong.Handle{`0,`1})">
             <summary>

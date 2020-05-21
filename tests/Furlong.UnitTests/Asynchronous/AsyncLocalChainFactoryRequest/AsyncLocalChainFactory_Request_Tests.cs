@@ -8,34 +8,35 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 {
     public class AsyncLocalChainFactory_Request_Tests
     {
-        private bool _checkpoint1;
-        private bool _checkpoint2;
+        private CancellationTokenSource _cancellationTokenSource;
+        private bool _exitTestAfterHandle1;
+        private bool _exitTestAfterHandle2;
 
-        private async Task HandleAsync1(MyRequest request, CancellationTokenSource source)
+        private async Task HandleAsync1(MyRequest request, CancellationToken cancellationToken)
         {
             request.Visited.Add(nameof(HandleAsync1));
 
-            if (_checkpoint1)
+            if (_exitTestAfterHandle1)
             {
-                source.Cancel();
+                _cancellationTokenSource.Cancel();
             }
 
             await Task.CompletedTask;
         }
 
-        private async Task HandleAsync2(MyRequest request, CancellationTokenSource source)
+        private async Task HandleAsync2(MyRequest request, CancellationToken cancellationToken)
         {
             request.Visited.Add(nameof(HandleAsync2));
 
-            if (_checkpoint2)
+            if (_exitTestAfterHandle2)
             {
-                source.Cancel();
+                _cancellationTokenSource.Cancel();
             }
 
             await Task.CompletedTask;
         }
 
-        private async Task HandleAsync3(MyRequest request, CancellationTokenSource source)
+        private async Task HandleAsync3(MyRequest request, CancellationToken cancellationToken)
         {
             request.Visited.Add(nameof(HandleAsync3));
 
@@ -53,7 +54,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
                 .Build();
 
             var request = new MyRequest();
-            await chain.HandleAsync(request);
+
+            _cancellationTokenSource = new CancellationTokenSource();
+            await chain.HandleAsync(request, _cancellationTokenSource.Token);
 
             request.Visited.Should()
                 .NotBeEmpty()
@@ -64,7 +67,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
         [Fact]
         public async Task GivenChain_WhenOnlyFirstOneShouldBeCalled_ThenOnlyFirstOneIsCalled()
         {
-            _checkpoint1 = true;
+            _exitTestAfterHandle1 = true;
 
             var chain = AsyncLocalChainFactory<MyRequest>
                 .Initialize()
@@ -74,7 +77,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
                 .Build();
 
             var request = new MyRequest();
-            await chain.HandleAsync(request);
+
+            _cancellationTokenSource = new CancellationTokenSource();
+            await chain.HandleAsync(request, _cancellationTokenSource.Token);
 
             request.Visited.Should()
                 .NotBeEmpty()
@@ -85,7 +90,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
         [Fact]
         public async Task GivenChain_WhenOnlyFirstTwoShouldBeCalled_ThenOnlyFirstTwoAreCalled()
         {
-            _checkpoint2 = true;
+            _exitTestAfterHandle2 = true;
 
             var chain = AsyncLocalChainFactory<MyRequest>
                 .Initialize()
@@ -95,7 +100,9 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
                 .Build();
 
             var request = new MyRequest();
-            await chain.HandleAsync(request);
+
+            _cancellationTokenSource = new CancellationTokenSource();
+            await chain.HandleAsync(request, _cancellationTokenSource.Token);
 
             request.Visited.Should()
                 .NotBeEmpty()

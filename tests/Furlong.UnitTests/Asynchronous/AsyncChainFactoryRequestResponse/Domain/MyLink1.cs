@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace Furlong.UnitTests.Asynchronous.AsyncChainFactoryRequestResponse.Domain
 {
@@ -11,13 +12,13 @@ namespace Furlong.UnitTests.Asynchronous.AsyncChainFactoryRequestResponse.Domain
             _contiunue = contiunue;
         }
 
-        public override async Task<MyResponse> HandleAsync(MyRequest request)
+        public override async Task<MyResponse> HandleAsync(MyRequest request, CancellationToken cancellationToken = default)
         {
             request.Visited.Add(this.GetType().Name);
 
             if (_contiunue)
             {
-                return await CallNextAsync(request);
+                return await CallNextAsync(request, cancellationToken);
             }
             else
             {

@@ -1,7 +1,7 @@
 ﻿namespace Furlong
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     public interface IAsyncChainFollowedBy<TRequest>
@@ -21,7 +21,7 @@
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     /// <typeparam name="TResponse"></typeparam>

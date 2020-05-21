@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace Furlong
 {
@@ -14,12 +15,13 @@ namespace Furlong
         /// Call the next link in chain (if one exists).
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
+        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns></returns>
-        protected async Task CallNextAsync(TRequest request)
+        protected async Task CallNextAsync(TRequest request, CancellationToken cancellationToken)
         {
             if (_successor != null)
             {
-                await _successor.HandleAsync(request);
+                await _successor.HandleAsync(request, cancellationToken);
             }
         }
 
@@ -27,8 +29,9 @@ namespace Furlong
         /// Handle the request.
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
+        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns></returns>
-        public abstract Task HandleAsync(TRequest request);
+        public abstract Task HandleAsync(TRequest request, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set the next link in the chain.
@@ -53,12 +56,13 @@ namespace Furlong
         /// Call the next link in chain (if one exists).
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
+        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns></returns>
-        protected async Task<TResponse> CallNextAsync(TRequest request)
+        protected async Task<TResponse> CallNextAsync(TRequest request, CancellationToken cancellationToken)
         {
             if (_successor != null)
             {
-                return await _successor.HandleAsync(request);
+                return await _successor.HandleAsync(request, cancellationToken);
             }
 
             return default;
@@ -68,8 +72,9 @@ namespace Furlong
         /// Handle the request.
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
+        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns></returns>
-        public abstract Task<TResponse> HandleAsync(TRequest request);
+        public abstract Task<TResponse> HandleAsync(TRequest request, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set the next link in the chain.

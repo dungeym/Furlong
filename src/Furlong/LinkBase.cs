@@ -1,5 +1,4 @@
-﻿
-namespace Furlong
+﻿namespace Furlong
 {
     /// <summary>
     /// Implementation of <c>IChainLink&lt;TRequest&gt;</c>

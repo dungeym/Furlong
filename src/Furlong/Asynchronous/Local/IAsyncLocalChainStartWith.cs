@@ -1,7 +1,7 @@
 ﻿namespace Furlong
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     public interface IAsyncLocalChainStartWith<TRequest>
@@ -15,7 +15,7 @@
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     /// <typeparam name="TResponse"></typeparam>

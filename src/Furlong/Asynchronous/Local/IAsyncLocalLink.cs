@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace Furlong
 {
@@ -13,8 +14,9 @@ namespace Furlong
         /// Handle a request.
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
+        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns></returns>
-        Task<TResponse> HandleAsync(TRequest request);
+        Task<TResponse> HandleAsync(TRequest request, CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -27,7 +29,7 @@ namespace Furlong
         /// Handle a request.
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
-        /// <returns></returns>
-        Task HandleAsync(TRequest request);
+        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+        Task HandleAsync(TRequest request, CancellationToken cancellationToken);
     }
 }
