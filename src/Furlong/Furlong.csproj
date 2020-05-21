@@ -8,7 +8,7 @@
     <Copyright>Mark Dungey (c) 2000-$([System.DateTime]::UtcNow.ToString(yyyy))</Copyright>
     <Description>Furlong provides several implementations of the Chain of Responsibility pattern, supporting sync, async-await, request, request-response, and local delegates (also using async-await, et al).</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageIcon>nuget-icon.jpg</PackageIcon>
     <Authors>dungeym</Authors>
     <Company>Mark Dungey</Company>
@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <None Remove="Furlong.xml" />
-    <None Include="..\..\License" Link="Resources\License">
+    <None Include="..\..\License.md" Link="Resources\License.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
