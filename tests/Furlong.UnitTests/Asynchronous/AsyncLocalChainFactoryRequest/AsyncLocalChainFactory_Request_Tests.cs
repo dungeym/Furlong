@@ -8,35 +8,34 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 {
     public class AsyncLocalChainFactory_Request_Tests
     {
-        private CancellationTokenSource _cancellationTokenSource;
         private bool _exitTestAfterHandle1;
         private bool _exitTestAfterHandle2;
 
-        private async Task HandleAsync1(MyRequest request, CancellationToken cancellationToken)
+        private async Task HandleAsync1(MyRequest request, CancellationTokenSource cancellationTokenSource)
         {
             request.Visited.Add(nameof(HandleAsync1));
 
             if (_exitTestAfterHandle1)
             {
-                _cancellationTokenSource.Cancel();
+                cancellationTokenSource.Cancel();
             }
 
             await Task.CompletedTask;
         }
 
-        private async Task HandleAsync2(MyRequest request, CancellationToken cancellationToken)
+        private async Task HandleAsync2(MyRequest request, CancellationTokenSource cancellationTokenSource)
         {
             request.Visited.Add(nameof(HandleAsync2));
 
             if (_exitTestAfterHandle2)
             {
-                _cancellationTokenSource.Cancel();
+                cancellationTokenSource.Cancel();
             }
 
             await Task.CompletedTask;
         }
 
-        private async Task HandleAsync3(MyRequest request, CancellationToken cancellationToken)
+        private async Task HandleAsync3(MyRequest request, CancellationTokenSource cancellationTokenSource)
         {
             request.Visited.Add(nameof(HandleAsync3));
 
@@ -55,8 +54,8 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 
             var request = new MyRequest();
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            await chain.HandleAsync(request, _cancellationTokenSource.Token);
+            var cancellationTokenSource = new CancellationTokenSource();
+            await chain.HandleAsync(request, cancellationTokenSource);
 
             request.Visited.Should()
                 .NotBeEmpty()
@@ -78,8 +77,8 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 
             var request = new MyRequest();
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            await chain.HandleAsync(request, _cancellationTokenSource.Token);
+            var cancellationTokenSource = new CancellationTokenSource();
+            await chain.HandleAsync(request, cancellationTokenSource);
 
             request.Visited.Should()
                 .NotBeEmpty()
@@ -101,8 +100,8 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
 
             var request = new MyRequest();
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            await chain.HandleAsync(request, _cancellationTokenSource.Token);
+            var cancellationTokenSource = new CancellationTokenSource();
+            await chain.HandleAsync(request, cancellationTokenSource);
 
             request.Visited.Should()
                 .NotBeEmpty()

@@ -12,7 +12,7 @@ namespace Furlong.UnitTests.Asynchronous.AsyncChainFactoryRequestResponse.Domain
             _contiunue = contiunue;
         }
 
-        public override async Task<MyResponse> HandleAsync(MyRequest request, CancellationToken cancellationToken = default)
+        public override async Task<MyResponse> HandleAsync(MyRequest request, CancellationToken cancellationToken)
         {
             request.Visited.Add(this.GetType().Name);
 

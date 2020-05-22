@@ -10,9 +10,9 @@ namespace Furlong
     /// </summary>
     /// <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
     /// <param name="request">An object that contains the data to be handled.</param>
-    /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
     /// <returns></returns>
-    public delegate Task HandleAsync<in TRequest>(TRequest request, CancellationToken cancellationToken);
+    public delegate Task HandleAsync<in TRequest>(TRequest request, CancellationTokenSource cancellationTokenSource);
 
     /// <summary>
     /// Method signature for <c>AsyncLocalChainFactory&lt;TRequest, TResponse&gt;</c>
@@ -20,9 +20,9 @@ namespace Furlong
     /// <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
     /// <typeparam name="TResponse">The type of the object returned.</typeparam>
     /// <param name="request">An object that contains the data to be handled.</param>
-    /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
     /// <returns></returns>
-    public delegate Task<TResponse> HandleAsync<in TRequest, TResponse>(TRequest request, CancellationToken cancellationToken);
+    public delegate Task<TResponse> HandleAsync<in TRequest, TResponse>(TRequest request, CancellationTokenSource cancellationTokenSource);
 
     /// <summary>
     /// Factory to construct a Chain (of Responsibility) where each link matches the <c>HandleAsync&lt;TRequest&gt;</c> delegate.
@@ -57,14 +57,15 @@ namespace Furlong
             return this;
         }
 
-        async Task IAsyncLocalLink<TRequest>.HandleAsync(TRequest request, CancellationToken cancellationToken)
+        async Task IAsyncLocalLink<TRequest>.HandleAsync(TRequest request, CancellationTokenSource cancellationTokenSource)
         {
+            var source = cancellationTokenSource ?? new CancellationTokenSource();
             using (var en = _handlers.Values.GetEnumerator())
             {
                 while (en.MoveNext())
                 {
-                    await en.Current(request, cancellationToken).ConfigureAwait(false);
-                    if (cancellationToken.IsCancellationRequested)
+                    await en.Current(request, source).ConfigureAwait(false);
+                    if (source.IsCancellationRequested)
                     {
                         break;
                     }
@@ -114,14 +115,15 @@ namespace Furlong
             return this;
         }
 
-        async Task<TResponse> IAsyncLocalChain<TRequest, TResponse>.HandleAsync(TRequest request, CancellationToken cancellationToken)
+        async Task<TResponse> IAsyncLocalChain<TRequest, TResponse>.HandleAsync(TRequest request, CancellationTokenSource cancellationTokenSource)
         {
+            var source = cancellationTokenSource ?? new CancellationTokenSource();
             using (var en = _handlers.Values.GetEnumerator())
             {
                 while (en.MoveNext())
                 {
-                    var response = await en.Current(request, cancellationToken).ConfigureAwait(false);
-                    if (cancellationToken.IsCancellationRequested)
+                    var response = await en.Current(request, source).ConfigureAwait(false);
+                    if (source.IsCancellationRequested)
                     {
                         return response;
                     }

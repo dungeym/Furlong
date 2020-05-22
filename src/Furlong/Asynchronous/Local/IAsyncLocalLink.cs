@@ -14,9 +14,9 @@ namespace Furlong
         /// Handle a request.
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
-        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+        /// <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
         /// <returns></returns>
-        Task<TResponse> HandleAsync(TRequest request, CancellationToken cancellationToken = default);
+        Task<TResponse> HandleAsync(TRequest request, CancellationTokenSource cancellationTokenSource);
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ namespace Furlong
         /// Handle a request.
         /// </summary>
         /// <param name="request">An object that contains the data to be handled.</param>
-        /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
-        Task HandleAsync(TRequest request, CancellationToken cancellationToken);
+        /// <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
+        Task HandleAsync(TRequest request, CancellationTokenSource cancellationTokenSource);
     }
 }

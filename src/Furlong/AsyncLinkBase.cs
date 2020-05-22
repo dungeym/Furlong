@@ -31,7 +31,12 @@ namespace Furlong
         /// <param name="request">An object that contains the data to be handled.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns></returns>
-        public abstract Task HandleAsync(TRequest request, CancellationToken cancellationToken = default);
+        public abstract Task HandleAsync(TRequest request, CancellationToken cancellationToken);
+
+        Task IAsyncLink<TRequest>.HandleAsync(TRequest request)
+        {
+            return HandleAsync(request, default(CancellationToken));
+        }
 
         /// <summary>
         /// Set the next link in the chain.
@@ -74,7 +79,12 @@ namespace Furlong
         /// <param name="request">An object that contains the data to be handled.</param>
         /// <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
         /// <returns></returns>
-        public abstract Task<TResponse> HandleAsync(TRequest request, CancellationToken cancellationToken = default);
+        public abstract Task<TResponse> HandleAsync(TRequest request, CancellationToken cancellationToken);
+
+        Task<TResponse> IAsyncLink<TRequest, TResponse>.HandleAsync(TRequest request)
+        {
+            return HandleAsync(request, default(CancellationToken));
+        }
 
         /// <summary>
         /// Set the next link in the chain.
