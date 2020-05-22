@@ -5,21 +5,24 @@
     <RepositoryUrl>https://github.com/dungeym/Furlong</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>GoF;design-patterns;chain;chain-of-responsibility</PackageTags>
-    <Copyright>Mark Dungey (c) 2000-$([System.DateTime]::UtcNow.ToString(yyyy))</Copyright>
+    <Copyright>Copyright 2000-$([System.DateTime]::UtcNow.ToString(yyyy)) Mark Dungey. All rights reserved.</Copyright>
     <Description>Furlong provides several implementations of the Chain of Responsibility pattern, supporting sync, async-await, request, request-response, and local delegates (also using async-await, et al).</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageIcon>nuget-icon.jpg</PackageIcon>
     <Authors>dungeym</Authors>
     <Company>Mark Dungey</Company>
-    <Version>3.1.0</Version>
-    <AssemblyVersion>3.1.0</AssemblyVersion>
+    <Version>3.2.0</Version>
+    <AssemblyVersion>3.2.0</AssemblyVersion>
     <FileVersion>$([System.Text.RegularExpressions.Regex]::Match($(AssemblyVersion), "(\d)\.(\d)").Groups[1].Value).$([System.Text.RegularExpressions.Regex]::Match($(AssemblyVersion), "(\d)\.(\d)").Groups[2].Value).$([System.DateTime]::Now.AddYears(1).ToString(yy))$([System.DateTime]::UtcNow.DayOfYear).$([System.DateTime]::UtcNow.TimeOfDay.TotalMinutes.ToString("#"))</FileVersion>
     <FileVersion Condition=" '$(CI)' == 'true' ">$([System.Text.RegularExpressions.Regex]::Match($(AssemblyVersion), "(\d)\.(\d)").Groups[1].Value).$([System.Text.RegularExpressions.Regex]::Match($(AssemblyVersion), "(\d)\.(\d)").Groups[2].Value).$([System.DateTime]::Now.AddYears(1).ToString(yy))$([System.DateTime]::UtcNow.DayOfYear).$(GITHUB_RUN_NUMBER)</FileVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Private\Development\Furlong\src\Furlong\Furlong.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -28,10 +31,6 @@
 
   <ItemGroup>
     <None Remove="Furlong.xml" />
-    <None Include="..\..\License.md" Link="Resources\License.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
     <None Include="..\..\nuget-icon.jpg" Link="Resources\nuget-icon.jpg">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

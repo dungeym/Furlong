@@ -136,6 +136,13 @@
             <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
+        <member name="M:Furlong.IAsyncLink`1.HandleAsync(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
         <member name="T:Furlong.IAsyncLink`2">
             <summary>
             Represents a link in a Chain (of Responsibility).
@@ -151,6 +158,13 @@
             <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
             <returns></returns>
         </member>
+        <member name="M:Furlong.IAsyncLink`2.HandleAsync(`0)">
+            <summary>
+            Handle a request.
+            </summary>
+            <param name="request">An object that contains the data to be handled.</param>
+            <returns></returns>
+        </member>
         <member name="T:Furlong.HandleAsync`1">
             <summary>
             Method signature for <c>AsyncLocalChainFactory&lt;TRequest&gt;</c>
@@ -158,7 +172,7 @@
             </summary>
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <param name="request">An object that contains the data to be handled.</param>
-            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+            <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
             <returns></returns>
         </member>
         <member name="T:Furlong.HandleAsync`2">
@@ -168,7 +182,7 @@
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <typeparam name="TResponse">The type of the object returned.</typeparam>
             <param name="request">An object that contains the data to be handled.</param>
-            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+            <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
             <returns></returns>
         </member>
         <member name="T:Furlong.AsyncLocalChainFactory`1">
@@ -270,12 +284,12 @@
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
             <typeparam name="TResponse">The type of the object returned.</typeparam>
         </member>
-        <member name="M:Furlong.IAsyncLocalChain`2.HandleAsync(`0,System.Threading.CancellationToken)">
+        <member name="M:Furlong.IAsyncLocalChain`2.HandleAsync(`0,System.Threading.CancellationTokenSource)">
             <summary>
             Handle a request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
-            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+            <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
             <returns></returns>
         </member>
         <member name="T:Furlong.IAsyncLocalLink`1">
@@ -284,12 +298,12 @@
             </summary>
             <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
         </member>
-        <member name="M:Furlong.IAsyncLocalLink`1.HandleAsync(`0,System.Threading.CancellationToken)">
+        <member name="M:Furlong.IAsyncLocalLink`1.HandleAsync(`0,System.Threading.CancellationTokenSource)">
             <summary>
             Handle a request.
             </summary>
             <param name="request">An object that contains the data to be handled.</param>
-            <param name="cancellationToken">A cancellation token to observe while waiting for the task to complete.</param>
+            <param name="cancellationTokenSource">A cancellation source that can be used to signal to cancellation token that it should be canceled.</param>
         </member>
         <member name="T:Furlong.AsyncLinkBase`1">
             <summary>
