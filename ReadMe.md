@@ -24,11 +24,11 @@ dotnet add package Furlong
 Simple chain with no response.
 ```csharp
 var chain = ChainFactory<MyRequest>
-				.Initialize()
-				.StartWith(new MyLink1())
-				.FollowedBy(new MyLink2())
-				.FollowedBy(new MyLink3())
-				.Build();
+		.Initialize()
+		.StartWith(new MyLink1())
+		.FollowedBy(new MyLink2())
+		.FollowedBy(new MyLink3())
+		.Build();
 
 var request = new MyRequest();
 
@@ -38,26 +38,27 @@ chain.Handle(request);
 Asynchronous chain returning a response.
 ```csharp
 var chain = AsyncChainFactory<MyRequest>
-				.Initialize()
-				.StartWith(new MyLink1())
-				.FollowedBy(new MyLink2())
-				.FollowedBy(new MyLink3())
-				.Build();
+		.Initialize()
+		.StartWith(new MyLink1())
+		.FollowedBy(new MyLink2())
+		.FollowedBy(new MyLink3())
+		.Build();
 
 var request = new MyRequest();
 
 var source = new CancellationTokenSource();
+
 var response = await chain.HandleAsync(request, source.Token);
 ```
 
 Synchronous chain using local delegates, with no response.
 ```csharp
 var chain = LocalChainFactory<MyRequest>
-				.Initialize()
-				.StartWith(Handle1)
-				.FollowedBy(Handle2)
-				.FollowedBy(Handle3)
-				.Build();
+		.Initialize()
+		.StartWith(Handle1)
+		.FollowedBy(Handle2)
+		.FollowedBy(Handle3)
+		.Build();
 
 var request = new MyRequest();
 
