@@ -47,6 +47,25 @@ namespace Furlong.UnitTests.Synchronous.LocalChainFactoryRequest
         }
 
         [Fact]
+        public void GivenChain_WhenContainsDuplicateLinks_ThenAllAreCalled()
+        {
+            var chain = LocalChainFactory<MyRequest>
+                .Initialize()
+                .StartWith(Handle1)
+                .FollowedBy(Handle2)
+                .FollowedBy(Handle1)
+                .Build();
+
+            var request = new MyRequest();
+            chain.Handle(request);
+
+            request.Visited.Should()
+                .NotBeEmpty()
+                .And.HaveCount(3)
+                .And.ContainInOrder(new[] { nameof(Handle1), nameof(Handle2), nameof(Handle1) });
+        }
+
+        [Fact]
         public void GivenChain_WhenOnlyFirstOneShouldBeCalled_ThenOnlyFirstOneIsCalled()
         {
             _checkpoint1 = true;

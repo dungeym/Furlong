@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,11 +30,11 @@ namespace Furlong
     /// <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
     public class AsyncLocalChainFactory<TRequest> : IAsyncLocalLink<TRequest>, IAsyncLocalChainStartWith<TRequest>, IAsyncLocalChainFollowedBy<TRequest>
     {
-        private readonly Dictionary<HandleAsync<TRequest>, HandleAsync<TRequest>> _handlers;
+        private readonly ConcurrentQueue<HandleAsync<TRequest>> _handlers;
 
         private AsyncLocalChainFactory()
         {
-            _handlers = new Dictionary<HandleAsync<TRequest>, HandleAsync<TRequest>>();
+            _handlers = new ConcurrentQueue<HandleAsync<TRequest>>();
         }
 
         /// <summary>
@@ -53,29 +53,27 @@ namespace Furlong
 
         IAsyncLocalChainFollowedBy<TRequest> IAsyncLocalChainFollowedBy<TRequest>.FollowedBy(HandleAsync<TRequest> handler)
         {
-            _handlers.Add(handler, handler);
+            _handlers.Enqueue(handler);
             return this;
         }
 
         async Task IAsyncLocalLink<TRequest>.HandleAsync(TRequest request, CancellationTokenSource cancellationTokenSource)
         {
             var source = cancellationTokenSource ?? new CancellationTokenSource();
-            using (var en = _handlers.Values.GetEnumerator())
+
+            while (_handlers.TryDequeue(out var handler))
             {
-                while (en.MoveNext())
+                await handler(request, source).ConfigureAwait(false);
+                if (source.IsCancellationRequested)
                 {
-                    await en.Current(request, source).ConfigureAwait(false);
-                    if (source.IsCancellationRequested)
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
         }
 
         IAsyncLocalChainFollowedBy<TRequest> IAsyncLocalChainStartWith<TRequest>.StartWith(HandleAsync<TRequest> handler)
         {
-            _handlers?.Add(handler, handler);
+            _handlers?.Enqueue(handler);
             return this;
         }
     }
@@ -88,11 +86,11 @@ namespace Furlong
     /// <typeparam name="TResponse">The type of the object returned.</typeparam>
     public class AsyncLocalChainFactory<TRequest, TResponse> : IAsyncLocalChain<TRequest, TResponse>, IAsyncLocalChartStartWith<TRequest, TResponse>, IAsyncLocalChainFollowedBy<TRequest, TResponse>
     {
-        private readonly Dictionary<HandleAsync<TRequest, TResponse>, HandleAsync<TRequest, TResponse>> _handlers;
+        private readonly ConcurrentQueue<HandleAsync<TRequest, TResponse>> _handlers;
 
         private AsyncLocalChainFactory()
         {
-            _handlers = new Dictionary<HandleAsync<TRequest, TResponse>, HandleAsync<TRequest, TResponse>>();
+            _handlers = new ConcurrentQueue<HandleAsync<TRequest, TResponse>>();
         }
 
         /// <summary>
@@ -111,22 +109,20 @@ namespace Furlong
 
         IAsyncLocalChainFollowedBy<TRequest, TResponse> IAsyncLocalChainFollowedBy<TRequest, TResponse>.FollowedBy(HandleAsync<TRequest, TResponse> handler)
         {
-            _handlers.Add(handler, handler);
+            _handlers.Enqueue(handler);
             return this;
         }
 
         async Task<TResponse> IAsyncLocalChain<TRequest, TResponse>.HandleAsync(TRequest request, CancellationTokenSource cancellationTokenSource)
         {
             var source = cancellationTokenSource ?? new CancellationTokenSource();
-            using (var en = _handlers.Values.GetEnumerator())
+
+            while (_handlers.TryDequeue(out var handler))
             {
-                while (en.MoveNext())
+                var response = await handler(request, source).ConfigureAwait(false);
+                if (source.IsCancellationRequested)
                 {
-                    var response = await en.Current(request, source).ConfigureAwait(false);
-                    if (source.IsCancellationRequested)
-                    {
-                        return response;
-                    }
+                    return response;
                 }
             }
 
@@ -135,7 +131,7 @@ namespace Furlong
 
         IAsyncLocalChainFollowedBy<TRequest, TResponse> IAsyncLocalChartStartWith<TRequest, TResponse>.StartWith(HandleAsync<TRequest, TResponse> handler)
         {
-            _handlers?.Add(handler, handler);
+            _handlers?.Enqueue(handler);
             return this;
         }
     }
