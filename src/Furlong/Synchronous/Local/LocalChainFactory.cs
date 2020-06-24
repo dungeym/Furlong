@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 
 namespace Furlong
 {
@@ -26,11 +26,11 @@ namespace Furlong
     /// <typeparam name="TRequest">The type of the object that contains the data to be handled.</typeparam>
     public class LocalChainFactory<TRequest> : ILocalLink<TRequest>, ILocalChainStartWith<TRequest>, ILocalChainFollowedBy<TRequest>
     {
-        private readonly Dictionary<Handle<TRequest>, Handle<TRequest>> _handlers;
+        private readonly ConcurrentQueue<Handle<TRequest>> _handlers;
 
         private LocalChainFactory()
         {
-            _handlers = new Dictionary<Handle<TRequest>, Handle<TRequest>>();
+            _handlers = new ConcurrentQueue<Handle<TRequest>>();
         }
 
         /// <summary>
@@ -49,29 +49,25 @@ namespace Furlong
 
         ILocalChainFollowedBy<TRequest> ILocalChainFollowedBy<TRequest>.FollowedBy(Handle<TRequest> handler)
         {
-            _handlers.Add(handler, handler);
+            _handlers.Enqueue(handler);
             return this;
         }
 
         void ILocalLink<TRequest>.Handle(TRequest request)
         {
-            using (var en = _handlers.Values.GetEnumerator())
+            while (_handlers.TryDequeue(out var handler))
             {
-                while (en.MoveNext())
+                handler(request, out var cancel);
+                if (cancel)
                 {
-                    en.Current(request, out var cancel);
-
-                    if (cancel)
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
         }
 
         ILocalChainFollowedBy<TRequest> ILocalChainStartWith<TRequest>.StartWith(Handle<TRequest> handler)
         {
-            _handlers?.Add(handler, handler);
+            _handlers?.Enqueue(handler);
             return this;
         }
     }
@@ -83,11 +79,11 @@ namespace Furlong
     /// <typeparam name="TResponse">The type of the object returned.</typeparam>
     public class LocalChainFactory<TRequest, TResponse> : ILocalChain<TRequest, TResponse>, ILocalChartStartWith<TRequest, TResponse>, ILocalChainFollowedBy<TRequest, TResponse>
     {
-        private readonly Dictionary<Handle<TRequest, TResponse>, Handle<TRequest, TResponse>> _handlers;
+        private readonly ConcurrentQueue<Handle<TRequest, TResponse>> _handlers;
 
         private LocalChainFactory()
         {
-            _handlers = new Dictionary<Handle<TRequest, TResponse>, Handle<TRequest, TResponse>>();
+            _handlers = new ConcurrentQueue<Handle<TRequest, TResponse>>();
         }
 
         /// <summary>
@@ -106,21 +102,18 @@ namespace Furlong
 
         ILocalChainFollowedBy<TRequest, TResponse> ILocalChainFollowedBy<TRequest, TResponse>.FollowedBy(Handle<TRequest, TResponse> handler)
         {
-            _handlers.Add(handler, handler);
+            _handlers.Enqueue(handler);
             return this;
         }
 
         TResponse ILocalChain<TRequest, TResponse>.Handle(TRequest request)
         {
-            using (var en = _handlers.Values.GetEnumerator())
+            while (_handlers.TryDequeue(out var handler))
             {
-                while (en.MoveNext())
+                var response = handler(request, out var cancel);
+                if (cancel)
                 {
-                    var response = en.Current(request, out var cancel);
-                    if (cancel)
-                    {
-                        return response;
-                    }
+                    return response;
                 }
             }
 
@@ -129,7 +122,7 @@ namespace Furlong
 
         ILocalChainFollowedBy<TRequest, TResponse> ILocalChartStartWith<TRequest, TResponse>.StartWith(Handle<TRequest, TResponse> handler)
         {
-            _handlers?.Add(handler, handler);
+            _handlers?.Enqueue(handler);
             return this;
         }
     }

@@ -64,6 +64,27 @@ namespace Furlong.UnitTests.Asynchronous.AsyncLocalChainFactoryRequest
         }
 
         [Fact]
+        public async Task GivenChain_WhenContainsDuplicateLinks_ThenAllAreCalled()
+        {
+            var chain = AsyncLocalChainFactory<MyRequest>
+                .Initialize()
+                .StartWith(HandleAsync1)
+                .FollowedBy(HandleAsync2)
+                .FollowedBy(HandleAsync1)
+                .Build();
+
+            var request = new MyRequest();
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            await chain.HandleAsync(request, cancellationTokenSource);
+
+            request.Visited.Should()
+                .NotBeEmpty()
+                .And.HaveCount(3)
+                .And.ContainInOrder(new[] { nameof(HandleAsync1), nameof(HandleAsync2), nameof(HandleAsync1) });
+        }
+
+        [Fact]
         public async Task GivenChain_WhenOnlyFirstOneShouldBeCalled_ThenOnlyFirstOneIsCalled()
         {
             _exitTestAfterHandle1 = true;

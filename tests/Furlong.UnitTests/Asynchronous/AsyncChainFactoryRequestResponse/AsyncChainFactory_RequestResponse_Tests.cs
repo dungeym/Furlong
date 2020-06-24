@@ -50,6 +50,26 @@ namespace Furlong.UnitTests.Asynchronous.AsyncChainFactoryRequestResponse
         }
 
         [Fact]
+        public async Task GivenChain_WhenContainsDuplicateLinks_ThenAllAreCalled()
+        {
+            var link = AsyncChainFactory<MyRequest, MyResponse>
+                  .Initialize()
+                  .StartWith(new MyLink1(true))
+                  .FollowedBy(new MyLink2(true))
+                  .FollowedBy(new MyLink1(true))
+                  .Build();
+
+            var request = new MyRequest();
+
+            await link.HandleAsync(request);
+
+            request.Visited.Should()
+                .NotBeEmpty()
+                .And.HaveCount(3)
+               .And.ContainInOrder(new[] { typeof(MyLink1).Name, typeof(MyLink2).Name, typeof(MyLink1).Name });
+        }
+
+        [Fact]
         public async Task GivenChain_WhenNoneShouldReturn_ThenResponseIsNull()
         {
             var link = AsyncChainFactory<MyRequest, MyResponse>
