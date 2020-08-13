@@ -74,9 +74,9 @@ private void Handle1(MyRequest request, out bool cancel)
 
 ### Further Examples 
 Further examples can be found in the Unit Tests project, these include:
-1. [Simple Dependency Injection](https://github.com/dungeym/Furlong/blob/master/src/tests/Furlong.UnitTests/DependencyInjection/FurlongInterface/FurlongInterface_Tests.cs)
-1. [Dependency Injection using a Context Resolver](https://github.com/dungeym/Furlong/blob/master/src/tests/Furlong.UnitTests/DependencyInjection/ContextResolver/ContextDriven_Tests.cs)
-1. [Using a custom interface as the request definition](https://github.com/dungeym/Furlong/blob/master/src/tests/Furlong.UnitTests/DependencyInjection/CustomInterface/CustomInterface_Tests.cs)
+1. [Simple Dependency Injection](https://github.com/dungeym/Furlong/blob/master/tests/Furlong.UnitTests/DependencyInjection/FurlongInterface/FurlongInterface_Tests.cs)
+1. [Dependency Injection using a Context Resolver](https://github.com/dungeym/Furlong/blob/master/tests/Furlong.UnitTests/DependencyInjection/ContextResolver/ContextDriven_Tests.cs)
+1. [Using a custom interface as the request definition](https://github.com/dungeym/Furlong/blob/master/tests/Furlong.UnitTests/DependencyInjection/CustomInterface/CustomInterface_Tests.cs)
 
 ### Feedback
 Please add any feedback or issue to the [Issues](https://github.com/dungeym/Furlong/issues) section in this project.
